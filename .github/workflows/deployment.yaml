@@ -72,10 +72,15 @@ jobs:
         mvn clean package 
         docker build --tag "gcr.io/$PROJECT_ID/demo-payment-service:latest" .
   
+    # # Push the Docker image to Google Container Registry
+    # - name: Publish
+    #   run: |-
+    #     docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+    
     # Push the Docker image to Google Container Registry
     - name: Publish
       run: |-
-        docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+        docker push "gcr.io/$PROJECT_ID/demo-payment-service:latest"
 
     # - name: GKE Deployment
     #   run: |-
