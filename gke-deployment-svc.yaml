@@ -15,10 +15,10 @@ spec:
         app: payment
     spec:
       nodeSelector:
-        cloud.google.com/gke-nodepool: gcr.io/$PROJECT_ID/demo-payment-service:latest	
+        cloud.google.com/gke-nodepool: payment-service	
       containers:
       - name: payment
-        image: ${IMAGES}
+        image: gcr.io/$PROJECT_ID/demo-payment-service:latest
         ports:
         - containerPort: 8080
 
