@@ -15,7 +15,7 @@ spec:
         app: payment
     spec:
       nodeSelector:
-        cloud.google.com/gke-nodepool: payment-service	
+        cloud.google.com/gke-nodepool: gcr.io/$PROJECT_ID/demo-payment-service:latest	
       containers:
       - name: payment
         image: ${IMAGES}
