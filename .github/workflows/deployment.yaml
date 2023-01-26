@@ -48,10 +48,16 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
         credentials: ${{ secrets.GKE_SA_KEY }}
-
+    
+    # Build using maven
+    - uses: qcastel/github-actions-maven/actions/maven@master
+      with:
+        maven-args: "clean install"
+    
     # Build the Docker image
     - name: Build
       run: |-
+        
         docker build \
           --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
