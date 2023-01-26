@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-deployment
+  labels:
+    app: payment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: payment
+  template:
+    metadata:
+      labels:
+        app: payment
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: payment-service	
+      containers:
+      - name: payment
+        image: ${IMAGES}
+        ports:
+        - containerPort: 8080
+
